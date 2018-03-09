@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet">
+		<script type="text/javascript" language="JavaScript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script type="text/javascript" language="JavaScript" src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script type="text/javascript" language="JavaScript" src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+		<title>vue</title>
+	</head>
+	<body>
+		<div id="app">
+			<p @click="clickVue" :class="{active:flag}" v-text="message"></p>
+			<div>{{session}}</div>
+			<input type="text" name="name" value="" v-model="session">
+			<ul>
+				<li v-for="(item,index) in arr" :key="index" v-text="item.a"></li>
+			</ul>
+			<div v-if="flag">v-if显示</div>
+			<div v-show="flag">v-show显示</div>
+		</div>
+		
+		<div class="container">
+			<h2>添加用户</h2>
+			<form class="form-horizontal">
+				<div class="form-group col-sm-12">
+					<label for="name" class="control-label col-sm-2 col-sm-offset-2">姓名：</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="name" v-model="user.name" placeholder="请输入姓名"/>
+					</div>
+					
+				</div>
+				
+				<div class="form-group col-sm-12">
+					<label for="name" class="control-label col-sm-2 col-sm-offset-2">年龄：</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="age" v-model="user.age" placeholder="请输入年龄"/>
+					</div>
+					
+				</div>
+				
+				<div class="form-group col-sm-12">
+					<label for="name" class="control-label col-sm-2 col-sm-offset-2">邮箱：</label>
+					<div class="col-sm-8">
+						<input type="email" class="form-control" id="email" v-model="user.email" placeholder="请输入邮箱"/>
+					</div>
+					
+				</div>
+				
+				<div class="form-group text-center">
+					<input type="button" @click="clickRest" value="重置" class="btn btn-primary"/>
+					<input type="button" @click="clickSub" value="添加" class="btn btn-primary"/>
+				</div>
+			</form>
+		</div>
+		<style>
+			.active{
+				color:green;
+			}
+		</style>
+		<script>
+		Vue.config.devtools=false;	//false生产模式  true:开发模式
+		Vue.config.productionTip=false;//阻止产生提示
+		var app=new Vue({
+				el:"#app",
+				data:{
+					message:"hello Wold",
+					flag:true,
+					session:"小明",
+					arr:[{a:"小明"},{"a":"小明"}]
+				},
+				methods:{
+					clickVue:function(){
+						this.flag=!this.flag;
+					}
+				}
+			})
+		
+		
+		var form=new Vue({
+			el:".container",
+				data:{
+					flag:true,
+					user:{name:"",age:"",email:""}
+				},
+				methods:{
+					clickSub(){
+						this.formValum(this.user.name,this.user.age,this.user.email)
+					},
+					clickRest(){
+						for(item in this.user){
+							this.user[item]="";
+						}
+					},
+					formValum(n,a,e){
+						if(n==""){
+							alert("姓名不能为空")
+						}else if(a==""){
+							alert("年龄不能为空")
+						}else if(e==""){
+							alert("邮箱不能为空")
+						}else{
+							this.formSub();
+						}
+					},
+					formSub(){
+						alert("提交成功");
+					}
+				}
+		})
+		</script>
+	</body>
+</html>
