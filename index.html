@@ -52,6 +52,8 @@
 					<input type="button" @click="clickSub" value="添加" class="btn btn-primary"/>
 				</div>
 			</form>
+
+			<div @click="print($event)">我是div</div>
 		</div>
 		<style>
 			.active{
@@ -105,6 +107,9 @@
 					},
 					formSub(){
 						alert("提交成功");
+					},
+					print(e){
+						console.log(e.target.innerHTML)
 					}
 				}
 		})
