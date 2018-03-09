@@ -31,4 +31,22 @@ v-model   数据绑定
 #4.方法
 	methods
 #5.属性
+###5.1属性的绑定和简写
 	
+#6事件对象#event
+
+#7事件冒泡
+###组织事件冒泡
+	a>原生js方式，依赖事件对象，e.stopPropagation
+	b>vue方式，@click.stop="show"
+
+#8事件默认行为
+###组织默认行为
+		1>原生js,e.preventDefault
+		2>vue,@click.prevent
+#9.键盘事件
+		@keydown
+		@keypress
+		@keyup
+
+		@keydown.13/@keydown.enter按下回车
