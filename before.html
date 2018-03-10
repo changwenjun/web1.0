@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+		<title>vue</title>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{msg}}</p>
+			<button @click="change">更新数据</button>
+			<button @click="destroy">数据销毁</button>
+		</div>
+		<script type="text/javascript">
+		var live=new Vue({
+				el:"#app",
+				data:{
+					msg:"hello world"
+				},
+				methods:{
+						change(){
+							this.msg="love  live"
+						},
+						destroy(){
+							live.$destroy();
+						}
+				},
+				beforeCreate(){
+					alert("beforeCreat:事件还未创建。为进行事件观测");
+				},
+				created(){
+					alert("creat:已经进行事件观测和配置");
+				},
+				beforeMount(){
+					alert("事件挂载之前");
+				},
+				mounted(){
+					alert("事件挂载之后,数据渲染完后，才能看到页面数据展示");
+				},
+				beforeUpdate(){
+					alert("组件更新之前");
+				},
+				updated(){
+					alert("组件跟新之后");
+				},
+				beforeDestroy(){
+					alert("组件销毁之前");
+				},
+				destroyed(){
+					alert("组件销毁之后");
+				}
+			})
+		</script>
+		
+	</body>
+</html>

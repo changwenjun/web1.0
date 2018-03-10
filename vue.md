@@ -119,3 +119,21 @@ v-model   数据绑定
 					}).then(res=>{
 						console.log(res.data)
 					})
+#14.生命周期
+			vue实例创建到销毁的过程：
+				beforeCreate:实例创建之后
+				Create：数据，事件渲染之后
+				beforeMount：末班编译渲染
+				mounted：已经挂在
+				beforeUpdate:数据修改之前
+				Updated:数据修改之后
+				beforeDestroy:数据销毁之前
+				Destroyed：数据销毁之后
+#15.计算属性
+			1.基本用法
+					计算属性用来存储数据，几个特点
+						a.数据可以逻辑处理
+						b.对计算属性中的数据进行监视
+			2.计算属性VS方法
+					a.计算属性基于它的依赖进行跟新的，只有在想干依赖发生改变是才能更行变化
+					b.计算属性有缓存，依赖没变，多次计算的得到的值是之前缓存的结果。
