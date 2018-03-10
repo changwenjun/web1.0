@@ -6,6 +6,7 @@
 		<script type="text/javascript" language="JavaScript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script type="text/javascript" language="JavaScript" src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<script type="text/javascript" language="JavaScript" src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
 		<title>vue</title>
 	</head>
 	<body>
@@ -54,6 +55,10 @@
 			</form>
 
 			<div @click="print($event)">我是div</div>
+		</div>
+
+		<div class="ajaxVue">
+			<p @click='numAxios'>点击获取数据{{arr}}</p>
 		</div>
 		<style>
 			.active{
@@ -112,6 +117,27 @@
 						console.log(e.target.innerHTML)
 					}
 				}
+		})
+
+
+		var ajaxVue=new Vue({
+			el:".ajaxVue",
+			data:{
+				arr:''
+			},
+			methods:{
+				numAxios(){
+					axios({
+						method:"get",
+						url:'js/axios.json'
+					}).then((res)=>{
+						console.log(res)
+						this.arr=res.data;
+					}).catch((error)=>{
+						console.log(error);
+					})
+				}
+			}
 		})
 		</script>
 	</body>
