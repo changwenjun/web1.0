@@ -50,3 +50,10 @@ v-model   数据绑定
 		@keyup
 
 		@keydown.13/@keydown.enter按下回车
+#10.模板
+	1.Vue.js使用基于HTML的模板语法
+	2.数据绑定的方式：
+						方式一：使用双大括号{{}}，可能会闪烁，v-cloak   [v-cloak]{display:none;},必须配合样式使用。
+						方式二：v-text  v-html
+	3.其它指令：v-once 数据只绑定一次<span v-once>{{msg}}</span>
+				v-pre 不编译，直接原样显示<span v-pre>{{msg}}</span>
