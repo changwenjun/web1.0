@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+		<title>动画效果</title>
+		<style type="text/css">
+		#app .item{
+			width:100px;
+			height:100px;
+			background: red;
+		}
+
+		.show-enter-active, .show-leave-active{
+			transition:all 1s ease;
+		}
+
+		.show-enter-active{
+			opacity: 1;
+			width:300px;
+			height:300px;
+		}
+
+		.show-leave-active{
+			opacity:0;
+			width:100px;
+			height:100px;
+		}
+
+		.show-enter{
+			opacity: 0;
+			width:0;
+			height:0;
+		}
+	</style>
+	</head>
+	<body>
+		<div id="app">
+			
+			<button @click="flag=!flag">点我</button>
+			<transition name="show">
+				<p class="item" v-show="flag">{{msg}}</p>
+			</transition>
+		</div>
+		<script type="text/javascript">
+		var live=new Vue({
+				el:"#app",
+				data:{
+					msg:"hello world",
+					flag:true
+				}
+
+			})
+		</script>
+		
+	</body>
+</html>

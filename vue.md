@@ -137,3 +137,66 @@ v-model   数据绑定
 			2.计算属性VS方法
 					a.计算属性基于它的依赖进行跟新的，只有在想干依赖发生改变是才能更行变化
 					b.计算属性有缓存，依赖没变，多次计算的得到的值是之前缓存的结果。
+#16.vue实例属性和方法
+			1. vm.$el$el  vue关联元素
+			2. vm.$data   获取数据
+			3. vm.$options 用来获取自定义属性  vm.$options.name
+			4. vm.$refs   用来获取页面中所有添加的属性元素  <h2 ref="hello">live</h2>    vm.$refs.hello//获取带有ref h2元素对象
+
+
+			a.方法
+			 vm.$mount()手动挂载vue实例  vm.$mount("#app")
+			 vm.$destroy()销毁实例 vm.$destroy()
+			 vm.$nextTick()下次DOM更行完后在执行 vm.$nextTick(function(){}),一般在修改数据之后使用该方法。
+			 
+
+			 $set(object,key,value)为对象添加一个属性，并添加值。可以实时监视  this.$set()   vue.set()
+			 $delect(object,key)删除属性    vue.delect()      this.$delect()
+			 $watch(属性,回调函数(新值，就值){},[options])侦听数据变化    vue.$watch()   this.$watch()
+
+
+			 watch选项   watch:{
+			 						age:(new,old)=>{
+			 							console.log(new,old)
+			 						},
+			 						user:{
+			 							handler:()=>{
+
+			 							},
+			 							deep:true//深度监视，当对象中的属性发生变化的时候也会被监视。
+
+			 						}
+								}
+#17.自定义指令
+		1.全局指令
+				a. Vue.directive(id,[definition]) 
+				<div v-hello></div>  
+				   Vue.directive("hello",{
+				   		bind:()=>{}//指令第一次绑定到元素上时调用，调用一次，初始化操作。
+				   		inserted:()=>{}//被绑定元素插入到DOM中时调用。
+				   		update:()=>{}//被绑定元素所在模板更新时调用
+				   		componentUpdated:()=>{}//被绑定元素所在模板完成一次更新时调用
+				   		unbind:()=>{}//指令与元素解绑时调用，只调用一次
+
+				   	})  
+				<div v-world:type="name"></div> 
+
+				   	Vue.directive('world',{
+				   		bind(el,binding){
+				   			el.style.color="red";
+				   			//el.value
+				   		}
+				   	})
+
+				   	//传入一个简单的函数
+				   	<div v-wbs></div> 
+				   		Vue.directive('wbs',function(){
+				   				alert("wbs1231245")
+				   		})
+		2.局部指令
+#18、过度动画
+	1.组件动画：transtion、animation
+		transtion:将要执行动画的元素包含在该组件中
+		<transition>
+
+		</transition>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+		<title>自定义指令</title>
+	</head>
+	<body>
+		<div id="app">
+			<div class="hello" v-drag>网络</div>
+			<div class="world" v-drag>世界</div>
+		</div>
+		<style type="text/css">
+			#app div{
+				width:100px;
+				height:100px;
+				position: absolute;
+			}
+			#app .hello{
+				background:red;
+				top:0;
+				left:0;
+			}
+
+			#app .world{
+				background:green;
+				top:0;
+				right:0;
+			}
+		</style>
+		<script type="text/javascript">
+		Vue.directive('drag',function(el){
+				el.onmousedown=function(e){
+						//console.log(e.clientX)
+						//获取鼠标点击位置与div左边和上边的距离
+						var left=e.clientX-el.offsetLeft,
+							top=e.clientY-el.offsetTop
+							console.log(left,top);
+						document.onmousemove=function(e){
+							//获取移动后div的位置
+							var l=e.clientX-left,
+							t=e.clientY-top
+							el.style.left=l+'px';
+							el.style.top=t+'px';
+						}
+
+						document.onmouseup=function(e){
+							document.onmousemove=null;
+							document.onmouseup=null;
+						}
+				}
+		})
+		var live=new Vue({
+				el:"#app",
+				data:{
+					msg:"hello world"
+				},
+				methods:{
+						change(){
+							this.msg="芙蓉果然果然果然果然果然果然够";
+						}
+				},
+				computed:{//实时监听计算属性
+					msg2:function(){//该函数必须要有返回值
+						return this.msg.split('').reverse().join('');
+					}
+					
+				}
+
+			})
+		</script>
+		
+	</body>
+</html>
