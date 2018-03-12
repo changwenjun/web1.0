@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+		<title>组件构造器</title>
+	</head>
+	<body>
+		<div id="app">
+			<my-world></my-world>
+		</div>
+
+		<template id="nam">
+			<div>
+				<div>{{name}}</div>
+				<my-worlde :message.sync='name'></my-worlde>
+				<button @click="Change" >修改子组件数据</button>
+			</div>
+		</template>
+		<template id="age1">
+			<div>
+				<div>{{age}}</div>
+				<div>{{mcut}}</div>
+				<button @click="Changes" >修改父组件数据</button>
+			</div>
+		</template>
+		<script type="text/javascript">
+		var live=new Vue({
+				el:"#app",
+				data:{
+					msg:"hello world"
+				},
+				components:{
+					'my-world':{
+						data:()=>{//组建中存储数据，必须要以函数的额形式
+							return {
+								name:"66666666666666"
+							} 
+						},
+						methods:{
+							Change(){
+								this.name="hello world"
+							}
+						},
+						template:'#nam',
+						components:{
+							'my-worlde':{
+								data:()=>{
+									return{
+										age:23,
+										msg:''
+									}
+								},
+								methods:{
+									Changes(){
+										this.$emit('update:message','hello wor苦于ld')
+									}
+								},
+								computed:{
+									mcut(){
+										this.msg=this.message;
+										return this.msg;
+									}	
+								},
+								template:'#age1',
+								props:['message']
+							}
+						}
+						
+					}
+				}
+
+
+			})
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+		<title>组件构造器</title>
+	</head>
+	<body>
+		<div id="app">
+			<my-world></my-world>
+			<my-world2></my-world2>
+			<my-world3></my-world3>
+		</div>
+		<template id="a">
+			<div>
+				<h3>{{name}}</h3>
+				<button @click='send'>数据传递(a-c)</button>
+			</div>
+		</template>
+		<template id="b">
+			<h3>{{age}}</h3>
+		</template>
+
+		<template id="c">
+			<h3>{{name}}</h3>
+		</template>
+		<script type="text/javascript">
+
+			var Event=new Vue();
+
+			var  a={
+					data:()=>{//组建中存储数据，必须要以函数的额形式
+						return {
+							name:"组件a"
+						} 
+					},
+					template:'#a',
+					methods:{
+						send(){
+							Event.$emit('data-a',this.name)
+						}
+					}
+				}
+			var b={
+					data:()=>{//组建中存储数据，必须要以函数的额形式
+						return {
+							age:""
+						} 
+					},
+					template:'#b'
+				}
+
+
+
+			var c={
+					template:'#c',
+					data(){//组建中存储数据，必须要以函数的额形式
+						return {
+							name:''
+						} 
+					},
+					mounted(){
+						Event.$on('data-a',(e)=>{
+								this.name=e;
+						})
+					}
+				}
+
+	
+		var live=new Vue({
+				el:"#app",
+				components:{
+					'my-world':a,
+					'my-world2':b,
+					'my-world3':c
+				}
+
+
+			})
+		</script>
+		
+	</body>
+</html>
