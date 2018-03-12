@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+		<title>组件构造器</title>
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				<keep-alive>
+					<!-- keep-live组件缓飞活动组件，可以保留状态，避免重新渲染。 -->
+					<component :is="flag"></component>
+				</keep-alive>
+			</div>
+			<button @click="flag='my-date'">my-date</button>
+			<button @click="flag='my-shit'">my-shit</button>
+			<button @click="flag='my-world'">my-world</button>
+		</div>
+		<template id="word">
+			<!-- <template>有且只有一个根元素 -->
+			<div>
+				<h3>{{name}}</h3>
+				<ul>
+					<li v-for="(v,k) in arr">
+					{{v}}
+					</li>
+				</ul>
+			</div>
+
+		</template>
+
+
+
+		<template id="text">
+			<!-- <template>有且只有一个根元素 -->
+				<h3>{{msgX}}</h3>
+
+		</template>
+
+
+			<template id="text2">
+			<!-- <template>有且只有一个根元素 -->
+				<h3>{{msgY}}</h3>
+
+		</template>
+
+
+		<script type="text/javascript">
+
+		var live=new Vue({
+				el:"#app",
+				data:{
+					msg:"hello world",
+					flag:"my-date"
+				},
+				components:{
+					'my-world':{
+						name:'stract-sik',//指定组件的名称，可以不设置
+						data:()=>{//组建中存储数据，必须要以函数的额形式
+							return {
+								name:"66666666666666",
+								arr:["r","t","y","u","p"]
+							} 
+						},
+						template:'#word'
+					},
+					'my-date':{
+						data:()=>{//组建中存储数据，必须要以函数的额形式
+							return {
+								msgX:Math.random()
+							} 
+						},
+						template:'#text'
+					},
+					'my-shit':{
+						data:()=>{//组建中存储数据，必须要以函数的额形式
+							return {
+								msgY:Math.random()
+							} 
+						},
+						template:'#text2'
+					}
+
+				}
+
+
+			})
+		</script>
+		
+	</body>
+</html>

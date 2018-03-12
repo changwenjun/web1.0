@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+		<title>组件构造器</title>
+	</head>
+	<body>
+		<div id="app">
+			<hello></hello>
+			<world></world>
+			<my-world></my-world>
+		</div>
+		<script type="text/javascript">
+		
+	//第一种方法
+		//1.使用Vue.extend()创建组件构造器
+		var vm=Vue.extend({
+			template:'<h3>hello  world</h3>'
+		})
+		//2.使用Vue.component(标签名，组件构造器)根据组件构造器来创建组件
+		Vue.component('hello',vm);
+	//第二种方法
+		//1.直接创建组件、推荐使用方法
+		Vue.component('world',{
+			template:'<h1>你好，世界</h1>'
+		})
+	//局部组件
+		var live=new Vue({
+				el:"#app",
+				data:{
+					msg:"hello world"
+				},
+				methods:{
+					
+				},
+				components:{
+					'my-world':{
+						data:()=>{//组建中存储数据，必须要以函数的额形式
+							return {
+								name:"66666666666666"
+							} 
+						},
+						template:'<h3>{{name}}</h3>'
+					}
+				}
+
+
+			})
+		</script>
+		
+	</body>
+</html>

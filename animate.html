@@ -6,32 +6,35 @@
 		<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
 		<title>动画效果</title>
 		<style type="text/css">
-		#app .item{
-			width:100px;
-			height:100px;
+		.item{
+			width:600px;
+			height:600px;
 			background: red;
 		}
 
+
+	
 		.show-enter-active, .show-leave-active{
 			transition:all 1s ease;
 		}
 
+	
 		.show-enter-active{
 			opacity: 1;
-			width:300px;
-			height:300px;
+			width:600px;
+			height:600px;
 		}
 
 		.show-leave-active{
 			opacity:0;
-			width:100px;
-			height:100px;
+			width:0;
+			height:0;
 		}
 
 		.show-enter{
-			opacity: 0;
-			width:0;
-			height:0;
+			opacity:0;
+			width:100px;
+			height:100px;
 		}
 	</style>
 	</head>
@@ -39,7 +42,7 @@
 		<div id="app">
 			
 			<button @click="flag=!flag">点我</button>
-			<transition name="show">
+			<transition name="show" @before-enter="cook">
 				<p class="item" v-show="flag">{{msg}}</p>
 			</transition>
 		</div>
@@ -49,6 +52,12 @@
 				data:{
 					msg:"hello world",
 					flag:true
+				},
+				methods:{
+					cook:function(el){
+						alert("动画进入之前");
+						el.style.background='blue';
+					}
 				}
 
 			})

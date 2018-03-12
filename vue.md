@@ -195,8 +195,54 @@ v-model   数据绑定
 				   		})
 		2.局部指令
 #18、过度动画
-	1.组件动画：transtion、animation
-		transtion:将要执行动画的元素包含在该组件中
-		<transition>
+		1.组件动画：transtion、animation
+			transtion:将要执行动画的元素包含在该组件中
+			<transition>
 
+			</transition>
+			钩子函数：8个
+		2.结合第三方动画库animate.css
+
+		3.多元素动画
+
+		<transition-group>
+			<p :key='1'>666</p>
+			<p :key='2'>333</p>
 		</transition>
+#19、组件component
+	1.自定义的元素，可扩展html元素，封装重用代码。
+	2.定义组件的方式
+		a.第一种创建组件的构造器，然后又组建构造器创建组件。
+		b.第二种直接创建组件
+	3.组建的分类
+		a.全剧组件
+
+		b.局部组件
+#20、引用模板、动态引用
+		将组建的内容放到模板<template>中并引用
+
+	 动态组件
+	 	<component :is="flag"></component>
+
+	 	<keep-alive></keep-alive>
+#21、组件间的数据传递
+	1.父子组件
+		在一个组件内部定义另一个组价，称为父子组件
+		默认情况下子父组件不能互相访问
+	2.组件之间数据传递通信
+		访问父组件数据
+				<my-hello-son :fmsg="msg"></my-hello-son>
+				使用props选项
+				在调用子组件时，绑定想要获取的父组件中的数据
+				崽子组件内部，使用props选项声明获取的数据，即接受来自父组件的数据
+				总结：父组件同过props向下传递数据给子组件
+
+		访问子组件数据
+				a在子组件中使用vm.$emit(事件名，数据)发送数据给父组件
+				b父组件在使用子组件的地方监听子组件除法的事件，并在父组件中定义方法，用来获取数据
+				总结，组组件通过event给子组件发送消息，实际上是组组件把自己的数据发送到父组件
+
+
+		组建中的数据总共有3中形式 data、props、computed
+
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+		<title>vue</title>
+	</head>
+	<body>
+		<div id="app">
+			<my-hello></my-hello>
+			
+		</div>
+		<template id="hello">
+			<div>
+				<h3>我是父组件{{msg}}</h3>
+				<my-hello-son :fmsg="msg" :fname='name' @son='getData'></my-hello-son>
+				<!-- 子组件只能在父组件内部使用 -->
+				<div>{{smsg}},{{sname}}</div>
+			</div>
+		</template>
+
+		<template id="hello-son">
+			<div>
+				<h3>我是子组件{{fmsg}},{{fname}}</h3>
+				<button @click='send'>点击获取</button>
+			</div>
+		</template>
+		<script type="text/javascript">
+		var live=new Vue({
+				el:"#app",
+				components:{
+					'my-hello':{
+						methods:{
+							getData(msg,name){
+									this.smsg=msg;
+									this.sname=name;
+							}
+						},
+						data(){
+							return{
+								msg:"网络",
+								name:"tim",
+								age:"23",
+								user:{id:23,username:'xm'},
+								smsg:'',
+								sname:''
+							}
+						},
+						template:'#hello',
+						components:{
+							'my-hello-son':{
+								data(){
+									return{
+										msg:"网络1",
+										name:"tim1",
+										age:"231",
+										user:{id:231,username:'xm1'}
+									}
+								},
+								template:'#hello-son',
+								props:['fmsg','fname'],
+								mounted(){
+										this.send();
+								},
+								methods:{
+									send(){
+										console.log(this)//this标识子组件的实例
+										this.$emit('son',this.msg,this.name);
+									}
+								}
+
+							}
+						}
+					}
+				}
+			
+
+			})
+		</script>
+		
+	</body>
+</html>
