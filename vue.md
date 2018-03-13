@@ -327,4 +327,7 @@ v-model   数据绑定
 		运行测试
 		npm  run  dev
 
+		npm  install  -D  webpack  webpack-dev-server vue-loader vue-html-loader css-loader  vue-style-loader file-loader babel-loader babel-core babel-preset-env vue-template-compiler
+
+
 
