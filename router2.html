@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+		<script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+		<title>router路由嵌套</title>
+		<style type="text/css">
+			.active{
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				<router-link to="/home">主页</router-link>
+				<router-link to="/user">用户</router-link>
+			</div>
+			<div>
+				<!-- 用来显示路由内容 -->
+				<transition entor-active-class="animated" >
+					<router-view></router-view>
+				</transition>
+				<button @click="push">切换路由</button>
+				<button @click="replace">切换路由</button>
+			</div>
+		</div>
+
+		<template id="user">
+				<div>
+					<h3>用户信息</h3>
+					<ul>
+						<router-link to="/user/login?name=tom&pw=123" tag='li'>用户登录</router-link>
+						<router-link to="/user/regist/alice/456" tag='li'>用户注册</router-link>
+					</ul>
+
+					<router-view></router-view>
+				</div>
+		</template>
+		<script type="text/javascript">
+			//1.定义组件内容
+
+			var Home={
+				template:'<h3>我是主页</h3>'
+			}
+
+			var User={
+				template:'#user'
+			}
+
+			var Login={
+				template:'<h3>用户登录666666666666666{{$route.query}}</h3>'
+			}
+
+
+
+			var Regist={
+				template:'<h3>用户注册999999999999999999999999{{$route.params}},{{$route.path}}</h3>'
+			}
+
+
+			//2.配置路哟
+			const routes=[
+				{path:'/home',component:Home},
+				{
+					path:'/user',
+					component:User,
+					children:[
+						{
+							path:'login',
+							component:Login
+						},
+
+						{
+							path:'regist/:username/:pwd',//参数传递
+							component:Regist
+						}
+					]
+				},
+				{path:'/',redirect:'/user'}
+			]
+			//3.创建路由实例
+
+			const router=new VueRouter({
+				//mode:'history',
+				routes,//简写
+				linkActiveClass:'active'//更改活动链接class类名
+			});
+			//4.创建根实例，将路由挂在到Vue实例上
+
+			new Vue({
+				el:"#app",
+				router,//注入路由
+				methods:{
+					push(){
+						router.push({
+							path:'/home'//添加路由
+						});
+					},
+					replace(){
+						router.replace({path:'/user'});//切换路由，无历史记录
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

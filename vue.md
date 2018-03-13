@@ -254,3 +254,77 @@ v-model   数据绑定
 
 #23、非父子组件间的通信
 		可以通过一个空的Vue实例作为事件总线（事件中心）。可用来侦听事件和触发事件
+#24、slot内容分发
+	本意：位置、槽。
+	作业：用来获取组件中的原内容，类似angular中的transclude指令。
+
+#25、vue-router路由
+		1.简介
+			使用vue.js开发spa单页面应用
+			根据不同url地址，显示不同的内容，单显示在同一个页面中，成为单页面应用。
+		【参考】(https://router.vuejs.org/zh-cn)
+		bower	info	vue-router
+		2.基本用法
+			a.布局
+#26、路由嵌套、参数传递、路由结合动画
+	
+		传参数的两种方式：
+			a.查询字符串：login?name=tom&age=23   {{$route.query}}
+
+			b.rest风格url:regist/aclice/456			{{$route.params}}
+		路由实例方法
+		router.push()添加路由、功能上与<route-link>相同
+		router.replace()替换路由、不产生历史记录
+#27、单文件组件
+	1.vue文件
+		.vue文件、称为单文件组件，是Vue.js自定义的一种文件格式，一个.vue文件就是一个单独的组件，在文件内封装了组件相关的代码。html/css/js
+
+		.vue文件又三部分组成<template>、<style>、<script>
+	2.vue-loader加载器，加载vue文件解析
+		html-loader  css-loader style-loader
+		需要注意的是vue-loader是基于webpackd的
+	3.webpack
+	webpack是一个前端资源模板化加载器和打包工具，它能够吧各种资源都作为模块来使用和处理。
+	实际上，webpack是通过不同的loader讲这些资源加载后打包，然后输出打包后文件
+	简单来说：webpack是一个模块加载器。
+	webpack核心配置文件webpack.config.js,必须在项目的根目录下
+
+	4.步骤、实例
+		创建项目、目录结构
+		webpack-demo
+			|-index.js
+			|-main.js主函数入口
+			|-App.vue  
+			|-package.json  工程文件
+			|-webpack.config.jswebpack核心配置文件
+			|-.babelrc  Babel配置文件
+
+		安装相关模板
+			npm  install vue 生产依赖
+
+
+
+			npm  install webpack 开发依赖
+			npm  install webpack-dev-server 
+			npm  install vue-loader 
+			npm  install vue-html-loader 
+			npm  install css-loader 
+			npm  install vue-style-loader 
+			npm  install file-loader 
+			npm  install babel-loader 
+			npm  install babel-core 
+			npm  install babel-preset-env //自动根据配置的运行环境自动启用需要的babel插件
+			npm  install vue-templte-compiler //预编译模板
+		编写main.js
+
+		webpack配置文件
+
+
+		编写.babelrc
+
+		编写package.json
+
+		运行测试
+		npm  run  dev
+
+
