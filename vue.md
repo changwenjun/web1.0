@@ -398,7 +398,101 @@ ESLint统一代码规范和风格
 		这种方式引入了elementui 的所有组件
 	按需引入
 
+	使用组件
 
+#30.less
+
+	安装less loader    less   less-loder
+
+	cnpm install less less-loader  -D
+
+	webpack配置文件loader添加
+	{
+        test: /\.less$/,
+		loader:'less-loader'
+    }
+
+	style标签指定语言为less才可以 <style lang="less">
+#31自定义全剧插件
+	全剧组件
+		可以在main.js中使用Vue.use全局引入，然后其他组件都可以使用。
+		Vue.use(obj)
+
+	普通插件(组件)
+		每次使用都要引入，但是可以添加到圆形上去。
+#32.vuex使用
+		Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。
+
+		简单来说，用来集中管理数据，都是基于flux的前端状态管理框架。
+
+	1.基本用法
+		安装
+			cnpm  install vuex -S
+		创建store.js文件
+
+			main.js配置store选项，指定为store对象，自动将store对象注入到所有的子组件中。子组件中通过瘫痪$store访问该store对象
+
+
+		编辑store.js文件
+			Vuex核心是Store(仓库)，相当于与是一个容器，一个store实例中可以包含以下方法：
+
+				state		定义属性（状态、数据）
+				getters     获取属性的
+				actions     定义方法的
+				commit      提交变化，修改数据的唯一方式，就是显示的提交muyations
+				mutations	突变，定义变化
+				*不能直接修改数据，必须显示的提交变化，目的是为了追踪到状态的变化。
+		编辑App.vue
+			在子组件中访问store对象
+				1.通过this.$store访问
+				2.通过mapGetters、mapActions访问，Vuex提供了两个方法。
+				mapGetters：获取属性
+				mapActions：获取方法
+				mapState：	获取state
+	2.分模块组织Vuex(更好的组织Vuex项目结构)
+
+		|-src
+			|-store
+				|-index.js
+				|-getters.js
+				|-actions.js
+				|-mutations.js
+				|-modules//分为多个模块，每个模块拥有自己的state getters......
+					|-user.js
+					|-cart.js
+					|-goods.js
+					|......
+
+
+#33.项目实例
+	1.初始化项目
+
+	vue  init webpack itany
+
+	cd itany
+
+	cnpm install
+
+	cnpm install less less-loader -D
+
+	cnpm insatll vuex -S
+
+	cnpm install axios -S
+
+	npm run dev
+
+
+	2.项目资源
+
+
+	3.创建目录结构
+
+		清除项目部分内容
+
+		目录如下
+				|-static
+					|-css
+						|-reset.css
 
 
 
