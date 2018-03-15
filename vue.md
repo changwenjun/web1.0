@@ -332,4 +332,73 @@ v-model   数据绑定
 
 
 
-4
+#28.vue-cli脚手架
+###简介
+
+   vue模板
+	webpack  包含ESLint代码规范检测和unit单元测试
+	webpack-simple 没有代码规范检测和单元测试
+	browserify  热加载
+	browserify-simple  
+	pwa
+	simple 很少简单
+###实例
+	
+	cnpm  install -g vue-cli安装,配置命令环境
+
+	vue  --version
+
+	vue  list
+###初始化项目
+vue init 末班名称  项目名
+
+cd  项目名
+
+cnpm  install
+
+cnpm  run  dev启动测试服务
+
+
+cnpm  run  build将项目打包dist目录
+
+ESLint统一代码规范和风格
+
+###模块化开发
+1.vue-router
+	cnpm install vue-router -S
+2.编辑main.js
+3.编辑App.vue
+4.编辑router.config.js
+###axios模块化
+	cnpm  install axios  -
+	使用axios的两种方法
+		1.每个组件中引入axios
+		2.在main.js全局引入axios并添加到VUE圆形中。 this.axios.get
+###为自定义组件添加事件
+	@click.native="send"   .native侦听组件根元素的原生事件
+
+@29.Elment UI组件库
+##1.简介
+	Elment UI饿了么团队提供的vue2.0组件库。可以快速搭建网站。
+		http://element.eleme.io/（pc）
+	Mint UI 饿了么团队提供的vue2.0组件库。可以快速搭建网站。
+		http://mint-ui.github.io/#!/zh-cn（移动端口）
+
+	安装
+	 	cnpm i element-ui -S
+	main.js导入模块并使用
+		import Element from 'element-ui';
+		import 'element-ui/lib/theme-chalk/index.css';需要loader加载器
+		需要在webpack配置文件中添加loader（cnpm install style-loader -D）
+		  {
+	      	test:/\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+	      	loader:'file-loader'
+	      }
+		使用Vue.use(Element)
+		这种方式引入了elementui 的所有组件
+	按需引入
+
+
+
+
+
