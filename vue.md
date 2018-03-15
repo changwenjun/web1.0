@@ -493,6 +493,8 @@ ESLint统一代码规范和风格
 				|-static
 					|-css
 						|-reset.css
+	4.配置API数据接口，模拟后台数据
+	使用express框架启动node服务器，配置API接口，模拟后台数据
 
 
 
